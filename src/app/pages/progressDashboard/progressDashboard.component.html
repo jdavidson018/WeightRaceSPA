@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-lg-8">
+    <nb-card>
+      <nb-card-header>Your Progress</nb-card-header>
+      <nb-card-body>
+        <ngx-progress-chart #ProgressChart [user]="user"></ngx-progress-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-4">
+    <nb-card>
+      <nb-card-header>Add a Weight</nb-card-header>
+      <nb-card-body>
+        <ngx-addweightform [userID]="user?.id" (addedWeight)="addedWeight($event)"></ngx-addweightform>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-2">
+    <nb-card>
+      <nb-card-header>Friends</nb-card-header>
+      <nb-card-body>
+        <ngx-friendList [user]="user" (clickedFriend)="clickedFriend($event)"></ngx-friendList>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-4">
+    <nb-card size="small">
+        <nb-card-header>Book Keeping</nb-card-header>
+        <nb-card-body>
+          <ngx-weightList #WeightList [user]="user" (deletedWeight)="deletedWeight($event)"></ngx-weightList>
+        </nb-card-body>
+    </nb-card>
+  </div>
+  <!-- <div class="col-lg-4">
+      <nb-card>
+        <nb-card-header>Rival (Fuck this guy)</nb-card-header>
+        <nb-card-body>hello</nb-card-body>
+      </nb-card>
+    </div> -->
+</div>

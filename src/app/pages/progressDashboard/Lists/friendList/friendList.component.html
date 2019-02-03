@@ -1,0 +1,5 @@
+<div class="row" *ngFor="let f of friends">
+  <nb-checkbox (change)="checkStatus(f)" status="success" class="col-sm-4">
+  </nb-checkbox>
+  <nb-user [picture]="f.photoUrl" [name]="f.knownAs" size="large"></nb-user>
+</div>

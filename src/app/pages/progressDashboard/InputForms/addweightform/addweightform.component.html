@@ -1,0 +1,22 @@
+<form [formGroup]="addWeightForm" (ngSubmit)="addWeight()">
+  <div class="form-group">
+    <input nbInput type="text" [ngClass]="{'is-invalid': addWeightForm.get('value').errors && addWeightForm.get('value').touched}"
+     class="form-control" formControlName="value" id="weightInput" placeholder="Weight">
+    <div class="invalid-feedback" *ngIf="addWeightForm.get('value').touched && addWeightForm.get('value').hasError('required')">Weight is required</div>
+  </div>
+
+  <div class="form-group">
+      <input nbInput 
+      class="form-control" 
+      placeholder="Date"
+      formControlName="date" 
+      [nbDatepicker]="formpicker"
+      [ngClass]="{'is-invalid': addWeightForm.get('date').errors && addWeightForm.get('date').touched}">
+      <nb-datepicker #formpicker></nb-datepicker>
+      <div class="invalid-feedback" *ngIf="addWeightForm.get('date').errors && addWeightForm.get('date').touched">
+      Date of birth is required
+      </div>
+    </div>
+
+  <button [disabled]="!addWeightForm.valid" type="submit" class="btn btn-success">Submit</button>
+</form>

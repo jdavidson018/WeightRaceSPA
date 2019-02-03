@@ -1,0 +1,133 @@
+<h1>Register a new account!</h1>
+<form [formGroup]="registerForm"  aria-labelledby="title" (ngSubmit)="register()">
+    <div class="form-group">
+        <label class="control-label" style="margin-right:10px">I am a: </label>
+        <label class="radio-inline">
+          <input class="mr-3" type="radio" value="male" formControlName="gender">Male
+        </label>
+        <label class="radio-inline ml-3">
+          <input class="mr-3" type="radio" value="female" formControlName="gender">Female
+        </label>
+    </div>
+  <div class="form-control-group">
+    <input type="text" 
+          [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}"
+          class="form-control" 
+          formControlName="username" 
+          placeholder="Username">
+    <div class="invalid-feedback">Please choose a username</div>
+  </div>
+  <div class="form-control-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('knownAs').errors && registerForm.get('knownAs').touched}" 
+            class="form-control"
+            formControlName="knownAs"
+            placeholder="Alias/nickname">
+    <div class="invalid-feedback" *ngIf="registerForm.get('knownAs').errors && registerForm.get('knownAs').touched">
+      An alias is required to protect anonymity
+    </div>
+  </div>
+  <div class="form-control-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('startWeight').errors && registerForm.get('startWeight').touched}"
+            class="form-control"
+            formControlName="startWeight"
+            placeholder="Current Weight">
+    <div class="invalid-feedback" *ngIf="registerForm.get('startWeight').errors && registerForm.get('startWeight').touched">
+      A starting weight is required to track progress
+    </div>
+  </div>
+  <div class="form-control-group">
+      <input [ngClass]="{'is-invalid': registerForm.get('goalWeight').errors && registerForm.get('goalWeight').touched}"
+              class="form-control"
+              formControlName="goalWeight"
+              placeholder="Goal Weight">
+      <div class="invalid-feedback" *ngIf="registerForm.get('goalWeight').errors && registerForm.get('goalWeight').touched">
+        A goal weight is required and will help keep you on the right track
+      </div>
+    </div>
+    <div class="form-control-group">
+      <input nbInput 
+              class="form-control" 
+              placeholder="Date of Birth"
+              formControlName="dateOfBirth" 
+              [nbDatepicker]="formpicker"
+              [ngClass]="{'is-invalid': registerForm.get('dateOfBirth').errors && registerForm.get('dateOfBirth').touched}">
+      <nb-datepicker #formpicker></nb-datepicker>
+      <div class="invalid-feedback" *ngIf="registerForm.get('dateOfBirth').errors && registerForm.get('dateOfBirth').touched">
+        Date of birth is required
+      </div>
+    </div>
+    <div class="form-control-group">
+      <input [ngClass]="{'is-invalid': registerForm.get('city').errors && registerForm.get('city').touched}"
+        class="form-control"
+        formControlName="city"
+        placeholder="City">
+      <div class="invalid-feedback" *ngIf="registerForm.get('city').errors && registerForm.get('city').touched">
+        City is required
+      </div>
+    </div>
+    <div class="form-control-group">
+      <input [ngClass]="{'is-invalid': registerForm.get('country').errors && registerForm.get('country').touched}"
+        class="form-control"
+        formControlName="country"
+        placeholder="Country">
+      <div class="invalid-feedback" *ngIf="registerForm.get('country').errors && registerForm.get('country').touched">
+        Country is required
+      </div>
+    </div>
+    <div class="form-group">
+        <input type="password" 
+        [ngClass]="{'is-invalid': registerForm.get('password').errors 
+        && registerForm.get('password').touched}"
+        class="form-control" 
+        formControlName="password" 
+        placeholder="Password">
+         <div class="invalid-feedback" 
+          *ngIf="registerForm.get('password').hasError('required') 
+            && registerForm.get('password').touched">
+            Password is required
+        </div>
+        <div class="invalid-feedback" 
+          *ngIf="registerForm.get('password').hasError('minlength') 
+            && registerForm.get('password').touched">
+            Password must be at least 6 characters
+        </div>
+        <div class="invalid-feedback" 
+          *ngIf="registerForm.get('password').hasError('maxlength') 
+            && registerForm.get('password').touched">
+            Password cannot exceed 30 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" 
+        [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors 
+        && registerForm.get('confirmPassword').touched
+        || registerForm.get('confirmPassword').touched
+        && registerForm.hasError('mismatch')}"
+        class="form-control" 
+        formControlName="confirmPassword" 
+        placeholder="Confirm Password">
+          <div class="invalid-feedback" 
+          *ngIf="registerForm.get('confirmPassword').hasError('required') 
+            && registerForm.get('confirmPassword').touched">
+            Password is required
+        </div>
+        <div class="invalid-feedback" 
+          *ngIf="registerForm.hasError('mismatch') 
+            && registerForm.get('confirmPassword').touched">
+            Passwords must match
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <button nbButton
+        [disabled]="!registerForm.valid"
+        status="primary"
+        type="submit">
+        Register
+      </button>
+      <button nbButton outline
+        status="success" 
+        (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+</form>

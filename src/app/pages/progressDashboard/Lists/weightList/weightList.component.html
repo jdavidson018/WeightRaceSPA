@@ -1,0 +1,7 @@
+  <ul class="traffic-list">
+    <li *ngFor="let w of weights">
+      <div class="value">{{w.value}}</div>
+      <div class="">{{w.date | date: 'mediumDate'}}</div>
+      <button nbButton siz="xsmall" (click)="deleteWeight(w)" class="btn btn-info">Delete</button>
+    </li>
+  </ul>
